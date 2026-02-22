@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Portfolio</title>
+    <meta charset="UTF-8">
+    <title>My Azure Portfolio</title>
 </head>
 <body>
-    <h1>Hello World! This is my Azure Portfolio.</h1>
-    <p>Azure Static Web App is live.</p>
+    <h1>Cloud Portfolio Live!</h1>
+    <p>This site is hosted on Azure Static Web Apps with a GitHub Actions CI/CD pipeline.</p>
+    
+    <hr>
+    <h3>Test the Backend API</h3>
+    <input type="text" id="nameBox" placeholder="Enter your name">
+    <button onclick="callApi()">Submit to Azure Function</button>
+    <p id="apiResponse"></p>
+
+    <script>
+        async function callApi() {
+            const name = document.getElementById('nameBox').value;
+            const response = await fetch('/api/ContactForm', {
+                method: 'POST',
+                body: JSON.stringify({ name: name }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            const data = await response.text();
+            document.getElementById('apiResponse').innerText = data;
+        }
+    </script>
 </body>
 </html>
