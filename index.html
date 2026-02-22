@@ -2,29 +2,90 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Azure Portfolio</title>
-</head>
-<body>
-    <h1>Cloud Portfolio Live!</h1>
-    <p>This site is hosted on Azure Static Web Apps with a GitHub Actions CI/CD pipeline.</p>
-    
-    <hr>
-    <h3>Test the Backend API</h3>
-    <input type="text" id="nameBox" placeholder="Enter your name">
-    <button onclick="callApi()">Submit to Azure Function</button>
-    <p id="apiResponse"></p>
-
-    <script>
-        async function callApi() {
-            const name = document.getElementById('nameBox').value;
-            const response = await fetch('/api/ContactForm', {
-                method: 'POST',
-                body: JSON.stringify({ name: name }),
-                headers: { 'Content-Type': 'application/json' }
-            });
-            const data = await response.text();
-            document.getElementById('apiResponse').innerText = data;
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Portfolio | Azure Specialist</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --accent: #38bdf8;
+            --success: #22c55e;
         }
-    </script>
-</body>
-</html>
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            border-top: 4px solid var(--accent);
+        }
+
+        h1 { color: var(--accent); margin-top: 0; }
+
+        .status-badge {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 1rem 0;
+            border-radius: 6px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent);
+            color: #0f172a;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #7dd3fc;
+            transform: translateY(-2px);
+        }
+
+        #apiResponse {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 6px;
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+            font-weight: 500;
+            text-align: center;
+            min-height: 20px;
+        }
+    </style>
+</head>
